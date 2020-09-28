@@ -80,95 +80,95 @@
 </template>
 
 <script>
-	import "../assets/animation.css";
-	export default {
-		name: "Index",
-		data() {
-			return {
-				user: "1",
-				pass: "123",
-			};
+import "../assets/animation.css";
+export default {
+	name: "Index",
+	data() {
+		return {
+			user: "1",
+			pass: "123",
+		};
+	},
+	methods: {
+		login() {
+			if (this.user === "1" && this.pass === "123") {
+				this.$router.push("/welcome");
+			} else {
+				this.$refs.open.open = true;
+			}
 		},
-		methods: {
-			login() {
-				if (this.user === "1" && this.pass === "123") {
-					this.$router.push("/welcome");
-				} else {
-					this.$refs.open.open = true;
-				}
-			},
-			close() {
-				this.$refs.open.open = false;
-			},
-			ring() {
-				let odiv = document.getElementById("animate");
-				odiv.classList.toggle("a-wobble");
-			},
+		close() {
+			this.$refs.open.open = false;
 		},
-	};
+		ring() {
+			let odiv = document.getElementById("animate");
+			odiv.classList.toggle("a-wobble");
+		},
+	},
+};
 </script>
 
 <style scoped>
-	.login {
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		width: 100%;
-		background: cyan;
-	}
-	.dialog {
-		border: 2px solid red;
-		font-size: 18px;
-		color: red;
-		width: 300px;
-	}
-	.button {
-		position: absolute;
-		right: 5px;
-		bottom: 2px;
-	}
-	/* 预览辅助样式 */
-	#animate {
-		position: absolute;
-		bottom: 20px;
-		left: 50%;
-		width: 280px;
-		height: 100px;
-		margin: -50px 0 0 -140px;
-		border-radius: 5px;
-		line-height: 100px;
-		text-align: center;
-		color: #fff;
-		background: #71acb9;
-	}
-	/* 纯CSS3幻灯手风琴效果hover切换，默认初始收起  */
-	.m-demo {
-		width: 650px;
-		height: 250px;
-		overflow: hidden;
-	}
-	.m-demo li {
-		list-style: none;
-		float: left;
-		height: 100%;
-		width: 120px;
-		box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-		-webkit-transition: width 0.5s ease-out;
-		-moz-transition: width 0.5s ease-out;
-		-ms-transition: width 0.5s ease-out;
-		transition: width 0.5s ease-out;
-	}
-	.m-demo:hover li:not(:hover) {
-		width: 50px;
-	}
-	.m-demo li:hover {
-		width: 400px;
-	}
-	/* 初始展开  */
-	.m-demo-1 li {
-		width: 50px;
-	}
-	.m-demo-1 li:first-child {
-		width: 400px;
-	}
+.login {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+	background: cyan;
+}
+.dialog {
+	border: 2px solid red;
+	font-size: 18px;
+	color: red;
+	width: 300px;
+}
+.button {
+	position: absolute;
+	right: 5px;
+	bottom: 2px;
+}
+/* 预览辅助样式 */
+#animate {
+	position: absolute;
+	bottom: 20px;
+	left: 50%;
+	width: 280px;
+	height: 100px;
+	margin: -50px 0 0 -140px;
+	border-radius: 5px;
+	line-height: 100px;
+	text-align: center;
+	color: #fff;
+	background: #71acb9;
+}
+/* 纯CSS3幻灯手风琴效果hover切换，默认初始收起  */
+.m-demo {
+	width: 650px;
+	height: 250px;
+	overflow: hidden;
+}
+.m-demo li {
+	list-style: none;
+	float: left;
+	height: 100%;
+	width: 120px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+	-webkit-transition: width 0.5s ease-out;
+	-moz-transition: width 0.5s ease-out;
+	-ms-transition: width 0.5s ease-out;
+	transition: width 0.5s ease-out;
+}
+.m-demo:hover li:not(:hover) {
+	width: 50px;
+}
+.m-demo li:hover {
+	width: 400px;
+}
+/* 初始展开  */
+.m-demo-1 li {
+	width: 50px;
+}
+.m-demo-1 li:first-child {
+	width: 400px;
+}
 </style>

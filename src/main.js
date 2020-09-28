@@ -5,13 +5,13 @@ import router from './router'
 import store from './store'
 import './assets/scss/style.scss'
 import './assets/iconfont/iconfont.css'
+Vue.config.silent = true
 
 //自定义组件
 import Card from './components/card.vue';
 Vue.component('m-card', Card);
 import ListCard from './components/ListCard.vue';
 Vue.component('m-list-card', ListCard);
-
 // wow.js 动画
 // import 'animate.css'
 // aos.js
@@ -33,7 +33,7 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
-// vex
+// vxe
 import 'xe-utils';
 import VXETable from 'vxe-table'
 import 'vxe-table/lib/index.css'
@@ -75,6 +75,12 @@ import Directives from './directives/directives'
 Vue.use(Directives)
 import focus from './directives/focus'
 Vue.use(focus)
+
+// ...
+import VXETablePluginExcel from 'vxe-table-plugin-excel'
+import 'vxe-table-plugin-excel/dist/style.css'
+// ...
+VXETable.use(VXETablePluginExcel)
 
 new Vue({
     router,
