@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div style="color: red; font-size: 100px">I'm routerView</div>
+		<div style="color: red; font-size: 50px">I'm routerView</div>
 	</div>
 </template>
 

@@ -1,12 +1,12 @@
 <template>
-	<div style="color: red; font-size: 100px">I'm Query</div>
+	<div style="color: red; font-size: 50px">I'm Query</div>
 </template>
 
 <script>
 export default {
-	created() {
-		console.log(this.$router);
-	},
+	created (){
+		console.log(this.$route);
+	}
 };
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-	<div>
+	 <transition name="slide">
 		<vxe-table ref="xTable2" border="full" :height="height" :data.sync="tableData">
 			<vxe-table-column type="checkbox" title="序号"></vxe-table-column>
 			<vxe-table-column field="sex" title="Name"></vxe-table-column>
@@ -17,7 +17,7 @@
 			:checkbox-config="{reserve: true}"
 			:columns="tableColumn"
 		></vxe-grid>
-	</div>
+	 </transition>
 </template>
 
 <script>
