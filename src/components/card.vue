@@ -13,9 +13,19 @@
 
 <script>
 export default {
+	provide() {
+		return {
+			card: this.card,
+		};
+	},
 	created() {
 		this.$emit("change");
 		// console.log(this.$listeners.change);
+	},
+	data () {
+		return {
+			card: 'card',
+		};
 	},
 	props: {
 		title: {

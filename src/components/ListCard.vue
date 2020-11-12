@@ -3,17 +3,20 @@
 		<div class="nav jc-between">
 			<div
 				class="nav-item"
-				:class="{active: active === index}"
+				:class="{ active: active === index }"
 				v-for="(category, index) in categroies"
 				:key="index"
 				@click="active = index"
 			>
-				<div class="nav-link">{{category.name}}</div>
+				<div class="nav-link">{{ category.name }}</div>
 			</div>
 		</div>
 		<div class="pt-3">
 			<swiper>
-				<swiper-slide v-for="(category, index) in categroies" :key="index">
+				<swiper-slide
+					v-for="(category, index) in categroies"
+					:key="index"
+				>
 					<slot name="items" :category="category"></slot>
 				</swiper-slide>
 			</swiper>
@@ -29,7 +32,7 @@ export default {
 		};
 	},
 	created() {
-		// console.log(this.$parent.tableProxy);
+		console.log(this.$parent.a);
 	},
 	methods: {
 		getMap() {

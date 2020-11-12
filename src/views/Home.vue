@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<el-input v-model="a" placeholder=""></el-input>
 		<swiper ref="mySwiper" :options="swiperOptions">
 			<swiper-slide>
 				<img class="w-100" src="../assets/images/1.jpeg" alt />
@@ -79,7 +80,7 @@
 
 		<m-card title="英雄列表">
 			<about>
-				<inject></inject>
+				<inject :tableProxy="tableProxy"></inject>
 			</about>
 		</m-card>
 
@@ -110,6 +111,10 @@
 		<h1 @click="modules">Modules</h1>
 
 		<h1 @click="router">Router</h1>
+		
+		<h1 @click="echarts">Echarts</h1>
+
+		<h1 @click="canvas">canvas</h1>
 	</div>
 </template>
 
@@ -122,9 +127,12 @@ export default {
 	components: { About, Inject },
 	created() {
 		console.log(this.$children);
+		console.log(this.aa);
 	},
 	data() {
 		return {
+			aa: new Array(100).keys(),
+			a: document.body.clientHeight,
 			tableProxy: {
 				seq: true, // 启用动态序号代理
 				props: {
@@ -233,6 +241,12 @@ export default {
 		router() {
 			this.$router.push("/router");
 		},
+		echarts() {
+			this.$router.push("/echarts");
+		},
+		canvas() { 
+			this.$router.push("/canvas");
+		},
 		async godata(params) {
 			const { data } = await Axios.get(`/api/brand_model`);
 			const page = params.page;
@@ -245,6 +259,9 @@ export default {
 			};
 			return rest;
 		},
+	},
+	mounted() {
+		console.log(this.tableProxy);
 	},
 };
 </script>

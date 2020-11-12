@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="vd">
 		<div id="top"></div>
 		<div class="parent">
 			<div class="son"></div>
@@ -295,5 +295,8 @@ export default {
 			background: palevioletred;
 		}
 	}
+}
+.vd{
+  -webkit-content-visibility: auto;
 }
 </style>

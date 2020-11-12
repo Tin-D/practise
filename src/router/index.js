@@ -166,6 +166,18 @@ const routes = [
         component: () =>
             import( /* webpackChunkName: "about" */ './protect/beforeRouteLeave.vue'),
     },
+    {
+        path: '/echarts',
+        name: 'echarts',
+        component: () =>
+            import( /* webpackChunkName: "about" */ '../views/echarts.vue'),
+    },
+    {
+        path: '/canvas',
+        name: 'canvas',
+        component: () =>
+            import( /* webpackChunkName: "about" */ '../views/canvas.vue'),
+    }
 ]
 
 const router = new VueRouter({
