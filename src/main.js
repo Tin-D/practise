@@ -8,8 +8,12 @@ import './assets/iconfont/iconfont.css'
 Vue.config.silent = true
 
 // events组件间的快捷传值插件
+//npm install vue-events
 import VueEvents from 'vue-events'
 Vue.use(VueEvents)
+//另一种events插件npm i vue-options-events -S
+// import vueOptionsEvents from '../node_modules/vue-options-events/index.js'
+// Vue.use(vueOptionsEvents)
 
 //自定义组件
 import Card from './components/card.vue';

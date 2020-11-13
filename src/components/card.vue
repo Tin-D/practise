@@ -19,8 +19,12 @@ export default {
 		};
 	},
 	created() {
+		//vue-events
 		this.$emit("change");
 		this.$events.$emit("testEvent", this.eventData);
+		this.$events.$emit("fire", 'hello');
+		//'vue-options-events'
+		// this.$trigger('hi', 'hello');
 	},
 	data() {
 		return {

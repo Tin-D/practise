@@ -37,7 +37,7 @@ export default {
 		};
 	},
 	created() {
-		console.log(this.$parent.a);
+		console.log(this.$parent.clientHeight);
 	},
 	methods: {
 		getMap() {
