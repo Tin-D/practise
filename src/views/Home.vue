@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<el-input v-model="a" placeholder=""></el-input>
+		<el-input v-model="clientHeight" placeholder=""></el-input>
 		<swiper ref="mySwiper" :options="swiperOptions">
 			<swiper-slide>
 				<img class="w-100" src="../assets/images/1.jpeg" alt />
@@ -111,7 +111,7 @@
 		<h1 @click="modules">Modules</h1>
 
 		<h1 @click="router">Router</h1>
-		
+
 		<h1 @click="echarts">Echarts</h1>
 
 		<h1 @click="canvas">canvas</h1>
@@ -127,12 +127,20 @@ export default {
 	components: { About, Inject },
 	created() {
 		console.log(this.$children);
-		console.log(this.aa);
+		console.log(this.array);
+	},
+	events: {
+		testEvent(testEvent) {
+			console.log(testEvent);
+		},
+		fire(jieke) {
+			console.log(jieke);
+		},
 	},
 	data() {
 		return {
-			aa: new Array(100).keys(),
-			a: document.body.clientHeight,
+			array: new Array(100).keys(),
+			clientHeight: null,
 			tableProxy: {
 				seq: true, // 启用动态序号代理
 				props: {
@@ -244,7 +252,7 @@ export default {
 		echarts() {
 			this.$router.push("/echarts");
 		},
-		canvas() { 
+		canvas() {
 			this.$router.push("/canvas");
 		},
 		async godata(params) {
@@ -261,7 +269,7 @@ export default {
 		},
 	},
 	mounted() {
-		console.log(this.tableProxy);
+		this.clientHeight = document.body.clientHeight;
 	},
 };
 </script>

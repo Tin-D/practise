@@ -7,6 +7,10 @@ import './assets/scss/style.scss'
 import './assets/iconfont/iconfont.css'
 Vue.config.silent = true
 
+// events组件间的快捷传值插件
+import VueEvents from 'vue-events'
+Vue.use(VueEvents)
+
 //自定义组件
 import Card from './components/card.vue';
 Vue.component('m-card', Card);

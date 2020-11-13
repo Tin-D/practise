@@ -20,11 +20,12 @@ export default {
 		},
 	},
 	created() {
+		this.$events.fire('fire', this.foo);
 		console.log(this.card, this.foo);
 	},
 	methods: {
 		aaa() {
-			this.$parent.$parent.a = "asd";
+			this.$parent.$parent.a = "test$parent";
 			console.log(this.$parent.$parent.a);
 		},
 	},

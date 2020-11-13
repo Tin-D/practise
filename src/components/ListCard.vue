@@ -31,6 +31,11 @@ export default {
 			getMap: this.getMap,
 		};
 	},
+	data() {
+		return {
+			active: 0,
+		};
+	},
 	created() {
 		console.log(this.$parent.a);
 	},
@@ -43,11 +48,6 @@ export default {
 		icon: { type: String, required: true },
 		title: { type: String, required: true },
 		categroies: { type: Array, required: true },
-	},
-	data() {
-		return {
-			active: 0,
-		};
 	},
 };
 </script>

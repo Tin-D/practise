@@ -22,6 +22,7 @@ export default {
 		};
 	},
 	created() {
+		// this.$data === data()钩子
 		console.log(this.$data);
 	},
 	data() {
