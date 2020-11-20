@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Home from '../views/HOME/Home.vue'
 
 Vue.use(VueRouter)
 
@@ -177,6 +177,12 @@ const routes = [
         name: 'canvas',
         component: () =>
             import( /* webpackChunkName: "about" */ '../views/canvas.vue'),
+    },
+    {
+        path: '/Vueuse',
+        name: 'Vueuse',
+        component: () =>
+            import( /* webpackChunkName: "about" */ '../views/Vueuse.vue'),
     }
 ]
 

@@ -15,9 +15,9 @@
 			<swiper>
 				<swiper-slide
 					v-for="(category, index) in categroies"
-					:key="index"
+					:key="index"	
 				>
-					<slot name="items" :category="category"></slot>
+					<slot name="items" :category="category" :a="[1,2,3]"></slot>
 				</swiper-slide>
 			</swiper>
 		</div>

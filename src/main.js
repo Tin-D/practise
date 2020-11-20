@@ -7,6 +7,16 @@ import './assets/scss/style.scss'
 import './assets/iconfont/iconfont.css'
 Vue.config.silent = true
 
+//自定义组件一
+import installObj from '@/components/use/index'
+// 只要这里引用对就行
+Vue.use(installObj)
+//自定义组件二  可以使用use或者直接全局注册组件
+import Card from './components/card.vue';
+Vue.component('m-card', Card);
+import ListCard from './components/ListCard.vue';
+Vue.component('m-list-card', ListCard);
+
 // events组件间的快捷传值插件
 //npm install vue-events
 import VueEvents from 'vue-events'
@@ -15,11 +25,6 @@ Vue.use(VueEvents)
 // import vueOptionsEvents from '../node_modules/vue-options-events/index.js'
 // Vue.use(vueOptionsEvents)
 
-//自定义组件
-import Card from './components/card.vue';
-Vue.component('m-card', Card);
-import ListCard from './components/ListCard.vue';
-Vue.component('m-list-card', ListCard);
 // wow.js 动画
 // import 'animate.css'
 // aos.js

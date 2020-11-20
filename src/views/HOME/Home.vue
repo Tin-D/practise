@@ -1,34 +1,9 @@
 <template>
 	<div>
 		<el-input v-model="clientHeight" placeholder=""></el-input>
-		<swiper ref="mySwiper" :options="swiperOptions">
-			<swiper-slide>
-				<img class="w-100" src="../assets/images/1.jpeg" alt />
-			</swiper-slide>
-			<swiper-slide>
-				<img class="w-100" src="../assets/images/2.jpeg" alt />
-			</swiper-slide>
-			<swiper-slide>
-				<img class="w-100" src="../assets/images/3.jpeg" alt />
-			</swiper-slide>
-			<div
-				class="swiper-pagination pagination-home text-right px-3 pb-1"
-				slot="pagination"
-			></div>
-		</swiper>
+		<S-wiper></S-wiper>
 		<!-- end of swiper -->
-		<div class="nav-icons bg-white mt-3 text-center pt-3 text-dark-1">
-			<div class="d-flex flex-wrp">
-				<div class="nav-item mb-3" v-for="n in 13" :key="n">
-					<i class="sprite sprite-news"></i>
-					<div class="py-2">爆料站</div>
-				</div>
-			</div>
-			<div class="bg-light py-2 fz-sm">
-				<i class="sprite sptite-arrow mr-1"></i>
-				收起
-			</div>
-		</div>
+		<Icons></Icons>
 		<!-- end of nav icons -->
 
 		<!-- <m-card title="新闻资讯">
@@ -64,7 +39,7 @@
 		</m-card>-->
 
 		<m-list-card icon="menu1" title="新闻资讯" :categroies="newsCats">
-			<template #items="{ category }">
+			<template #items="{ category, a }">
 				<div
 					class="py-2 d-flex"
 					v-for="(news, i) in category.newsList"
@@ -75,6 +50,13 @@
 					<span class="flex-1">{{ news.title }}</span>
 					<span>{{ news.data }}</span>
 				</div>
+				<div
+					class="py-2 d-flex"
+					v-for="i in a"
+					:key="i"
+				>
+					<span>{{i}}</span>
+				</div>
 			</template>
 		</m-list-card>
 
@@ -84,44 +66,64 @@
 			</about>
 		</m-card>
 
-		<m-card title="精彩视频"></m-card>
+		<!-- 
+			.sync就是相当于父传子，子组件需要改动父组件的这个值
+			-------------- 子 --------------
+			<input @input="sendMsg" :value="title" />
+			sendMsg (event) {
+				this.$emit('updatetitle', event.target.value)
+			}
+			-------------- 父 --------------
+			<text-document :title="doc.title" @updatetitle="doc.title = $event"></text-document>
+			这时.sync相当于这个操作省去这个步骤 
+		-->
+		<m-card :title.sync="title">
+			<template #cardSlot>
+				<el-input v-model="title"></el-input>
+			</template>
+			<div>{{title}}</div>
+		</m-card>
 
-		<m-card title="图文攻略"></m-card>
+		<m-card title="图文攻略">图文攻略</m-card>
 
-		<h1 @click="goVex">vex案例</h1>
+		<div>
+			<h1 @click="goVex">vex案例</h1>
 
-		<h1 @click="sideBar">侧边栏路由</h1>
+			<h1 @click="sideBar">侧边栏路由</h1>
 
-		<h1 @click="childRouter">子路由</h1>
+			<h1 @click="childRouter">子路由</h1>
 
-		<h1 @click="vueDirctives">veu各种指令</h1>
+			<h1 @click="vueDirctives">veu各种指令</h1>
 
-		<h1 @click="css">Css库</h1>
+			<h1 @click="css">Css库</h1>
 
-		<h1 @click="store">Store</h1>
+			<h1 @click="store">Store</h1>
 
-		<h1 @click="state">State</h1>
+			<h1 @click="state">State</h1>
 
-		<h1 @click="getters">Getters</h1>
+			<h1 @click="getters">Getters</h1>
 
-		<h1 @click="mutations">Mutations</h1>
+			<h1 @click="mutations">Mutations</h1>
 
-		<h1 @click="actions">Actions</h1>
+			<h1 @click="actions">Actions</h1>
 
-		<h1 @click="modules">Modules</h1>
+			<h1 @click="modules">Modules</h1>
 
-		<h1 @click="router">Router</h1>
+			<h1 @click="router">Router</h1>
 
-		<h1 @click="echarts">Echarts</h1>
+			<h1 @click="echarts">Echarts</h1>
 
-		<h1 @click="canvas">canvas</h1>
+			<h1 @click="canvas">canvas</h1>
+
+			<h1 @click="Vueuse">Vueuse</h1>
+		</div>
 	</div>
 </template>
 
 <script>
 import Axios from "axios";
-import About from "./About";
-import Inject from "./inject";
+import About from "@/views/About";
+import Inject from "@/views/inject";
 
 export default {
 	components: { About, Inject },
@@ -139,6 +141,7 @@ export default {
 	},
 	data() {
 		return {
+			title: '精彩视频',
 			array: new Array(100).keys(),
 			clientHeight: null,
 			tableProxy: {
@@ -255,6 +258,9 @@ export default {
 		canvas() {
 			this.$router.push("/canvas");
 		},
+		Vueuse() {
+			this.$router.push("/Vueuse");
+		},
 		async godata(params) {
 			const { data } = await Axios.get(`/api/brand_model`);
 			const page = params.page;
@@ -275,7 +281,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/scss/var.scss";
+@import "@/assets/scss/var.scss";
 
 .pagination-home {
 	.swiper-pagination-bullet {

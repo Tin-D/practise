@@ -25,7 +25,7 @@ axios.defaults.baseURL = '/api';
 
 axios.interceptors.request.use(
     (config) => {
-        console.log(config);
+        // console.log(config);
         if (config.loading) {
             const options = {
                 text: config.loading.text || '处理中...',

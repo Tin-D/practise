@@ -6,13 +6,17 @@
 			<i>---{{ this.ass }}</i>
 		</div>
 		<div class="card-body pt-3">
-			<slot></slot>
+			<slot name="cardSlot"></slot>
+			<slot>
+				<el-input :value="title"></el-input>
+			</slot>
 		</div>
 	</div>
 </template>
 
 <script>
 export default {
+	inheritAttrs: false,
 	provide() {
 		return {
 			card: this.card,
@@ -22,7 +26,7 @@ export default {
 		//vue-events
 		this.$emit("change");
 		this.$events.$emit("testEvent", this.eventData);
-		this.$events.$emit("fire", 'hello');
+		this.$events.$emit("fire", "hello");
 		//'vue-options-events'
 		// this.$trigger('hi', 'hello');
 	},
@@ -32,7 +36,7 @@ export default {
 			eventData: "SDD",
 		};
 	},
-	mounted() {
+	methods: {
 	},
 	props: {
 		title: {
