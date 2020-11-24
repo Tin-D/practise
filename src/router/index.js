@@ -183,6 +183,12 @@ const routes = [
         name: 'Vueuse',
         component: () =>
             import( /* webpackChunkName: "about" */ '../views/Vueuse.vue'),
+    },
+    {
+        path: '/elementUI',
+        name: 'elementUI',
+        component: () =>
+            import( /* webpackChunkName: "about" */ '../views/elementUI.vue'),
     }
 ]
 

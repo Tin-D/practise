@@ -116,6 +116,9 @@
 			<h1 @click="canvas">canvas</h1>
 
 			<h1 @click="Vueuse">Vueuse</h1>
+
+			<h1 @click="elementUI">elementUI</h1>
+			
 		</div>
 	</div>
 </template>
@@ -260,6 +263,9 @@ export default {
 		},
 		Vueuse() {
 			this.$router.push("/Vueuse");
+		},
+		elementUI() {
+			this.$router.push("/elementUI");
 		},
 		async godata(params) {
 			const { data } = await Axios.get(`/api/brand_model`);
