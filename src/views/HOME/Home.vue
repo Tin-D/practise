@@ -60,6 +60,8 @@
 			</template>
 		</m-list-card>
 
+		<Dc1></Dc1>
+
 		<m-card title="英雄列表">
 			<about>
 				<inject :tableProxy="tableProxy"></inject>
@@ -118,6 +120,8 @@
 			<h1 @click="Vueuse">Vueuse</h1>
 
 			<h1 @click="elementUI">elementUI</h1>
+
+			<h1 @click="search">search</h1>
 			
 		</div>
 	</div>
@@ -266,6 +270,9 @@ export default {
 		},
 		elementUI() {
 			this.$router.push("/elementUI");
+		},
+		search() {
+			this.$router.push("/search");
 		},
 		async godata(params) {
 			const { data } = await Axios.get(`/api/brand_model`);

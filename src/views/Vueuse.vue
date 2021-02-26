@@ -1,19 +1,13 @@
 <template>
-	<div id="app">
-		<h1>vue install example</h1>
-		<sayHello></sayHello>
-		<sayWorld></sayWorld>
-	</div>
+<div id="app">
+  <h1>vue install example</h1>
+  <sayHello></sayHello>
+  <sayWorld></sayWorld>
+</div>
 </template>
 
 <script>
 export default {
-	name: "app",
-	data() {
-		return {};
-	},
-};
+  name:'app',
+}
 </script>
-
-<style>
-</style>

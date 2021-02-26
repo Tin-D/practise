@@ -36,7 +36,64 @@ export default new Vuex.Store({
         todos: [
             { id: 1, text: '...', done: true },
             { id: 2, text: '...', done: false }
-        ]
+        ],
+        dormitory: [
+            {
+              id:1,
+              people: '雷森',
+              relationship: '大学室友',
+              meet: '2010-09-02',
+              place: '图书馆',
+              execg: '胖子',
+              year: '8年',
+              works: '海阔天空',
+              checked:false
+            }, 
+            {
+              id:2,
+              people: '刘利伟',
+              relationship: '大学室友',
+              meet: '2010-09-02',
+              place: '5#633',
+              execg: '老大',
+              year: '8年',
+              works: '勇气',
+              checked:false
+            },
+            {
+              id:3,
+              people: '李金龙',
+              relationship: '大学室友',
+              meet: '2010-09-02',
+              place: '5#633',
+              execg: '二哥',
+              year: '8年',
+              works: '遇见',
+              checked:false
+            }, 
+            {
+              id:4,
+              people: '马康',
+              relationship: '大学室友',
+              meet: '2010-09-02',
+              place: '餐饮大厦',
+              execg: '康哥',
+              year: '8年',
+              works: '不再联系',
+              checked:false
+            }, 
+            {
+              id:5,
+              people: '小甜',
+              relationship: '亲密的人',
+              meet: '2016-10-05',
+              place: '小寨',
+              execg: '甜甜圈',
+              year: '2年',
+              works: 'Forever Love',
+              checked:false
+            }
+          ],
     },
     getters: {
         doneTodos: state => {

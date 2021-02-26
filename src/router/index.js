@@ -189,6 +189,12 @@ const routes = [
         name: 'elementUI',
         component: () =>
             import( /* webpackChunkName: "about" */ '../views/elementUI.vue'),
+    },
+    {
+        path: '/search',
+        name: 'search',
+        component: () =>
+            import( /* webpackChunkName: "about" */ '../views/search.vue'),
     }
 ]
 

@@ -1,5 +1,6 @@
 <template>
 	<m-card :icon="icon" :title="title">
+		<el-input v-model="aa" placeholder=""></el-input>
 		<div class="nav jc-between">
 			<div
 				class="nav-item"
@@ -15,9 +16,13 @@
 			<swiper>
 				<swiper-slide
 					v-for="(category, index) in categroies"
-					:key="index"	
+					:key="index"
 				>
-					<slot name="items" :category="category" :a="[1,2,3]"></slot>
+					<slot
+						name="items"
+						:category="category"
+						:a="[1, 2, 3]"
+					></slot>
 				</swiper-slide>
 			</swiper>
 		</div>

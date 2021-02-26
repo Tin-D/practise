@@ -16,7 +16,8 @@
 		</dialog>
 
 		<button @click="ring">震铃</button>
-		<div id="animate">震铃</div>
+		<input type="text" v-model="a" />
+		<div id="animate" :class="a > 10.8 ? 'a-shake' : ''" :style="a > 10.8 ? 'background:red' : ''">震铃111</div>
 
 		<!-- wow css -->
 		<h1 class="animate__animated animate__rubberBand">An animated element</h1>
@@ -87,6 +88,7 @@ export default {
 		return {
 			user: "1",
 			pass: "123",
+			a: 10,
 		};
 	},
 	methods: {
@@ -102,7 +104,6 @@ export default {
 		},
 		ring() {
 			let odiv = document.getElementById("animate");
-			odiv.classList.toggle("a-wobble");
 		},
 	},
 };

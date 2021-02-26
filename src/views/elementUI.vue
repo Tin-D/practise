@@ -125,5 +125,8 @@ export default {
 };
 </script>
 
-<style lang="sass" scoped>
+<style lang='scss'>
+.el-divider .el-divider__text{
+	color:red;
+}
 </style>
