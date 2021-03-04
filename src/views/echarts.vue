@@ -10,8 +10,8 @@
 <script>
 import dayjs from "dayjs";
 import echarts from "echarts";
-import * as c from '@/assets/js/conm.js'
-// * as ... 表示别名 这样的话就可以c.a(),c.b()函数了 等同于全部 
+import * as c from "@/assets/js/conm.js";
+// * as ... 表示别名 这样的话就可以c.a(),c.b()函数了 等同于全部
 
 export default {
 	data() {
@@ -23,32 +23,16 @@ export default {
 				title: {
 					text: "设备资源容量分析",
 				},
-				dataZoom: [
-					{
-						type: "slider",
-						show: true,
-						xAxisIndex: 0,
-						bottom: 0,
-						start: 0,
-						end: 100,
-					},
-					{
-						type: "slider",
-						show: true,
-						yAxisIndex: 0,
-						right: 30,
-						start: 0,
-						end: 100,
-					},
-					{
-						type: "inside",
-						AxisIndex: 0,
-					},
-					{
-						type: "inside",
-						yAxisIndex: 0,
-					},
-				],
+				dataZoom: [{
+                        type: 'slider',
+                        show: true,
+                        xAxisIndex: [0],
+                        bottom: 0,
+                        start: 0,
+                        end: 100,
+                    }, {
+                        type: 'inside',
+                    }],
 				tooltip: {
 					trigger: "axis",
 					axisPointer: {
@@ -120,7 +104,7 @@ export default {
 							onclick: (e) => {
 								let element = document.getElementById(
 									"myChart"
-                                );
+								);
 
 								let isFullscreen =
 									document.fullScreenElement || //W3C
@@ -130,8 +114,8 @@ export default {
 									false;
 
 								if (!isFullscreen) {
-                                    c.a();
-                                    element.style.background = '#fff';
+									c.a();
+									element.style.background = "#fff";
 									if (element.requestFullscreen) {
 										element.requestFullscreen();
 									} else if (element.mozRequestFullScreen) {
@@ -144,7 +128,7 @@ export default {
 										element.msRequestFullscreen();
 									}
 								} else {
-                                    c.b();
+									c.b();
 									if (document.exitFullscreen) {
 										document.exitFullscreen();
 									} else if (document.msExitFullscreen) {
@@ -212,7 +196,7 @@ export default {
 					name: "时间",
 					type: "category",
 					boundaryGap: false,
-					data: [1, 2, 3, 4, 5, 3],
+					data: [1, 2, 3, 4, 5, 6],
 				},
 				yAxis: {
 					name: "温度（℃）",
@@ -227,42 +211,42 @@ export default {
 						type: "line",
 						areaStyle: {},
 						smooth: true,
-						data: [10, 22, 32, 41, 66],
+						data: [10, 22, 32, 41, 66, 50],
 					},
 					{
 						name: "温度设定值",
 						type: "line",
 						areaStyle: {},
 						smooth: true,
-						data: [15, 32, 36, 40, 62],
+						data: [15, 32, 36, 40, 62, 30],
 					},
 					{
 						name: "温度读取值",
 						type: "line",
 						areaStyle: {},
 						smooth: true,
-						data: [13, 26, 37, 45, 61],
+						data: [13, 26, 37, 45, 61, 26],
 					},
 					{
 						name: "温度回风口实测值",
 						type: "line",
 						areaStyle: {},
 						smooth: true,
-						data: [14, 12, 42, 46, 76],
+						data: [14, 12, 42, 46, 76, 20],
 					},
 					{
 						name: "温度出风口实测值",
 						type: "line",
 						areaStyle: {},
 						smooth: true,
-						data: [15, 29, 37, 46, 67],
+						data: [15, 29, 37, 46, 67, 10],
 					},
 				],
 			},
 		};
 	},
 	created() {
-		const a = new Array(100).fill({}).map((i, index) => ({
+		const a = new Array(10000).fill({}).map((i, index) => ({
 			time: this.renderDateTime(new Date(1605058612000 + index * 45000)),
 			voltage: 12.6,
 		}));
@@ -282,11 +266,14 @@ export default {
 				).toFixed(1);
 			}
 		}
+
 		if (this.power.xAxis.data.length > 30) {
 			this.power.dataZoom[0].end = 30;
 		}
 		setInterval(() => {
 			this.power.xAxis.data.push(2);
+			this.power.series[0].data.push(2);
+			this.powerLine();
 		}, 2000);
 	},
 	methods: {
@@ -344,11 +331,32 @@ export default {
 		powerLine() {
 			this.$nextTick(() => {
 				let myChart = echarts.init(document.getElementById("myChart"));
-				myChart.setOption(this.power);
+				// 动态更新重绘时控制滑块不重置控制
+				myChart.on("dataZoom", (event) => {
+					if (event.batch) {
+						// 鼠标滚轮缩放
+						this.dataZoom = {
+							start: event.batch[0].start,
+							end: event.batch[0].end,
+						};
+						this.power.dataZoom[0].start = this.dataZoom.start;
+						this.power.dataZoom[0].end = this.dataZoom.end;
+					} else {
+						// 滑块缩放
+						this.dataZoom = {
+							start: event.start,
+							end: event.end,
+						};
+						this.power.dataZoom[0].start = this.dataZoom.start;
+						this.power.dataZoom[0].end = this.dataZoom.end;
+					}
+				});
+				// 动态加载数据重绘
+				myChart.setOption(this.power, true);
+				myChart.setOption({ value: "myChart" });
 				window.addEventListener("resize", function () {
 					myChart.resize();
 				});
-				myChart.setOption({ value: "myChart" });
 				// el-tab-pane初始高度，显示滚动条
 				// const tabHeight = document.body.clientHeight -
 				//     document.getElementsByClassName('el-header')[0].offsetHeight -
