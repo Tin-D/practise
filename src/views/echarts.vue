@@ -10,6 +10,8 @@
 <script>
 import dayjs from "dayjs";
 import echarts from "echarts";
+import theme from "@/assets/js/purple-passion.js";
+echarts.registerTheme("theme", theme);
 import * as c from "@/assets/js/conm.js";
 // * as ... 表示别名 这样的话就可以c.a(),c.b()函数了 等同于全部
 
@@ -23,16 +25,19 @@ export default {
 				title: {
 					text: "设备资源容量分析",
 				},
-				dataZoom: [{
-                        type: 'slider',
-                        show: true,
-                        xAxisIndex: [0],
-                        bottom: 0,
-                        start: 0,
-                        end: 100,
-                    }, {
-                        type: 'inside',
-                    }],
+				dataZoom: [
+					{
+						type: "slider",
+						show: true,
+						xAxisIndex: [0],
+						bottom: 0,
+						start: 0,
+						end: 100,
+					},
+					{
+						type: "inside",
+					},
+				],
 				tooltip: {
 					trigger: "axis",
 					axisPointer: {
@@ -246,6 +251,11 @@ export default {
 		};
 	},
 	created() {
+		setInterval(() => {
+			this.power.xAxis.data.push(2);
+			this.power.series[0].data.push(2);
+			this.powerLine();
+		}, 2000);
 		const a = new Array(10000).fill({}).map((i, index) => ({
 			time: this.renderDateTime(new Date(1605058612000 + index * 45000)),
 			voltage: 12.6,
@@ -270,11 +280,6 @@ export default {
 		if (this.power.xAxis.data.length > 30) {
 			this.power.dataZoom[0].end = 30;
 		}
-		setInterval(() => {
-			this.power.xAxis.data.push(2);
-			this.power.series[0].data.push(2);
-			this.powerLine();
-		}, 2000);
 	},
 	methods: {
 		// 打印功能
@@ -352,7 +357,7 @@ export default {
 					}
 				});
 				// 动态加载数据重绘
-				myChart.setOption(this.power, true);
+				myChart.setOption(this.power);
 				myChart.setOption({ value: "myChart" });
 				window.addEventListener("resize", function () {
 					myChart.resize();
