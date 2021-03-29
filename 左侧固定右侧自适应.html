@@ -1,0 +1,70 @@
+<!doctype html
+  public "-//w3c//dtd xhtml 1.0 transitional//en" "http://www.w3.org/tr/xhtml1/dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+  <title>无标题文档</title>
+  <style type="text/css">
+    .fixed {
+      width: 200px;
+      background: blueviolet;
+      float: left;
+    }
+
+    .auto {
+      background: goldenrod;
+      overflow: hidden;
+    }
+
+    .tab-box {
+      border: 1px #d1eacc solid;
+      width: 215px;
+      margin: 0 auto;
+    }
+
+    .tab-box .btn {
+      margin: 1px;
+      cursor: pointer;
+      font-size: 0;
+    }
+
+    .btn span {
+      background: #f2fde2;
+      width: 105px;
+      text-align: center;
+      height: 29px;
+      line-height: 29px;
+      color: #4ca72d;
+      display: inline-block;
+      font-size: 12px;
+      overflow: hidden;
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <div class="fixed" id="fixed">固定200px</div>
+    <div class="auto" id="auto">自动充满自动充满自动充满自动充满自动充满自动充满自动充满自动充满自动充满自动充满自动充满自动充满自动充满自动充满自动充满自动充满自动充满自动充满自动充满自动充满自动充满自动充满自动充满自动充满自动充满自动充满自动充满自动充满自动充满自动充满自动充满自动充满自动充满自动充满自动充满自动充满自动充满自动充满</div>
+  </div>
+  <div class="tab-box">
+    <div class="btn clearfix">
+      <span>最新导读</span>
+      <span>热点关注</span>
+    </div>
+  </div>
+</body>
+<script>
+  window.onload = () => {
+    const a = document.getElementById('auto').getBoundingClientRect();
+    document.getElementById('fixed').style.height = a.height + 'px';
+  }
+  window.addEventListener('resize', () => {
+    const a = document.getElementById('auto').getBoundingClientRect();
+    document.getElementById('fixed').style.height = a.height + 'px';
+  });
+</script>
+</html>

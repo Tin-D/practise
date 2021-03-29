@@ -7,7 +7,7 @@
 				:class="{ active: active === index }"
 				v-for="(category, index) in categroies"
 				:key="index"
-				@click="active = index"
+				@click="handler(index)"
 			>
 				<div class="nav-link">{{ category.name }}</div>
 			</div>
@@ -47,6 +47,10 @@ export default {
 	methods: {
 		getMap() {
 			console.log(1);
+		},
+		handler (index) {
+			this.active = index;
+			console.log(document.getElementsByClassName('swiper-wrapper'));
 		},
 	},
 	props: {
